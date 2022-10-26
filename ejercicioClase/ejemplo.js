@@ -6,7 +6,8 @@ let producto = parseInt(
 let seguirComprando = true
 let totalCompra = 0
 let decision
-
+// arreglo de productos
+const productosArray = []
 // clase producto
 class NewProduct{
   constructor(id,name,price,stock){
@@ -17,23 +18,29 @@ class NewProduct{
   }
 }
 const iphone = new NewProduct(1,'iPhone',600,20);
+productosArray.push(iphone);
 const tv = new NewProduct(2,'TV',1000,40);
+productosArray.push(tv);
 const ipad = new NewProduct(3,'iPad',200,30);
+productosArray.push(ipad);
 const computador = new NewProduct(4,'computador',800,15);
-iphone.price = 650
-
+productosArray.push(computador);
+//iphone.price = 650
+console.log(productosArray)
 
 while (seguirComprando === true) {
-  if (producto === iphone.id) {
-    totalCompra = totalCompra + iphone.price
-    iphone.stock = iphone.stock-1
-  } else if (producto === tv.id) {
-    totalCompra = totalCompra + tv.price
-  } else if (producto === ipad.id) {
-    totalCompra = totalCompra + ipad.price
-  } else if (producto === computador.id) {
-    totalCompra = totalCompra + computador.price
-  }
+  // if (producto === iphone.id) {
+  //   totalCompra = totalCompra + iphone.price
+  //   iphone.stock = iphone.stock-1
+  // } else if (producto === tv.id) {
+  //   totalCompra = totalCompra + tv.price
+  // } else if (producto === ipad.id) {
+  //   totalCompra = totalCompra + ipad.price
+  // } else if (producto === computador.id) {
+  //   totalCompra = totalCompra + computador.price
+  // }
+  //console.log(productosArray[producto-1])
+  totalCompra = totalCompra + productosArray[producto-1].price
 
   decision = parseInt(prompt('Quieres seguir comprando? 1.Si - 2.No'))
   if (decision === 1) {
