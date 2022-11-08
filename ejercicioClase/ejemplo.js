@@ -1,4 +1,4 @@
-let producto = parseInt(
+let productoSeleccionado = parseInt(
   prompt(
     'Escoge el producto que deseas comprar: 1.iPhone - 2.TV - 3.Ipad - 4.Computador'
   )
@@ -9,24 +9,26 @@ let decision
 // arreglo de productos
 const productosArray = []
 // clase producto
-class NewProduct{
-  constructor(id,name,price,stock){
+class NewProduct {
+  constructor(id, name, price, stock) {
     this.id = id
-    this.name = name;
-    this.price = price;
+    this.name = name
+    this.price = price
     this.stock = stock
   }
 }
-const iphone = new NewProduct(1,'iPhone',600,20);
-productosArray.push(iphone);
-const tv = new NewProduct(2,'TV',1000,40);
-productosArray.push(tv);
-const ipad = new NewProduct(3,'iPad',200,30);
-productosArray.push(ipad);
-const computador = new NewProduct(4,'computador',800,15);
-productosArray.push(computador);
+const iphone = new NewProduct(1, 'iPhone', 600, 20)
+productosArray.push(iphone)
+const tv = new NewProduct(2, 'TV', 1000, 40)
+productosArray.push(tv)
+const ipad = new NewProduct(3, 'iPad', 200, 30)
+productosArray.push(ipad)
+const computador = new NewProduct(4, 'computador', 800, 15)
+productosArray.push(computador)
 //iphone.price = 650
-console.log(productosArray)
+//console.log(productosArray)
+
+const carrito = []
 
 while (seguirComprando === true) {
   // if (producto === iphone.id) {
@@ -40,11 +42,17 @@ while (seguirComprando === true) {
   //   totalCompra = totalCompra + computador.price
   // }
   //console.log(productosArray[producto-1])
-  totalCompra = totalCompra + productosArray[producto-1].price
+  const producto = productosArray.find(
+    (prod) => prod.id === productoSeleccionado
+  )
+  if(producto){
+    carrito.push(producto)
+  }
+  //totalCompra = totalCompra + producto.price
 
   decision = parseInt(prompt('Quieres seguir comprando? 1.Si - 2.No'))
   if (decision === 1) {
-    producto = parseInt(
+    productoSeleccionado = parseInt(
       prompt(
         'Escoge el producto que deseas comprar: 1.iPhone - 2.TV - 3.Ipad - 4.Computador'
       )
@@ -53,9 +61,23 @@ while (seguirComprando === true) {
     seguirComprando = false
   }
 }
+/*
+[
+  600, => a
+  1000, => b
+  600
+]
 
-const totalCompraConDescuento = descuento(totalCompra)
-alert(`El total de tu compra es ${totalCompraConDescuento}`)
+*/
+//totalCompra = carrito.map(producto=>producto.price).reduce((a,b)=>a+b)
+carrito.forEach(producto=>{
+  totalCompra = totalCompra + producto.price
+})
+console.log(carrito)
+console.log(totalCompra)
+alert(`El total de tu compra ${totalCompra}`)
+// const totalCompraConDescuento = descuento(totalCompra)
+// alert(`El total de tu compra es ${totalCompraConDescuento}`)
 
 //1.iPhone(600) - 2.TV(1000) - 3.Ipad(200) - 4.Computador(800)'
 
